@@ -886,6 +886,62 @@
         .form-message.success { color: var(--nova-accent); }
         .form-message.error { color: #e74c3c; }
 
+        /* ── EVENTS SECTION ── */
+        .events { background: var(--nova-bg-primary); }
+
+        .events-intro {
+            max-width: 620px;
+            margin: 0 auto 56px;
+            text-align: center;
+        }
+
+        .events-intro p {
+            font-size: 1rem;
+            color: var(--nova-text-secondary);
+            line-height: 1.7;
+        }
+
+        .form-group select,
+        .form-group input[type="date"],
+        .form-group input[type="number"] {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 0;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--nova-text-primary);
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-group select:focus,
+        .form-group input[type="date"]:focus,
+        .form-group input[type="number"]:focus {
+            border-bottom-color: var(--nova-accent);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+            padding-right: 24px;
+        }
+
+        .form-group select option {
+            background: var(--nova-bg-secondary);
+            color: var(--nova-text-primary);
+        }
+
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.7);
+            cursor: pointer;
+        }
+
         .final-cta-note {
             margin-top: 20px;
             font-size: 0.85rem;
@@ -985,6 +1041,7 @@
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#location">Location</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="#events">Events</a></li>
                 <li><a href="#reserve" class="nav-cta">Reserve Your Desk</a></li>
             </ul>
             <button class="nav-hamburger" id="menuOpen" aria-label="Open menu">
@@ -1003,6 +1060,7 @@
         <a href="#pricing" onclick="closeMenu()">Pricing</a>
         <a href="#location" onclick="closeMenu()">Location</a>
         <a href="#faq" onclick="closeMenu()">FAQ</a>
+        <a href="#events" onclick="closeMenu()">Events</a>
         <a href="#reserve" class="btn-primary" onclick="closeMenu()">Reserve Your Desk</a>
     </div>
 
@@ -1298,6 +1356,84 @@
         </div>
     </section>
 
+    <!-- ── EVENTS ── -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section-header center reveal">
+                <p class="section-label">Events</p>
+                <h2 class="section-title">Host your event<br>at Nova House</h2>
+                <p class="section-desc">Meetups, workshops, networking sessions, or private events. Our space is ready for your community.</p>
+            </div>
+            <form id="eventsForm" class="nova-form reveal">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventName">Your name <span class="required">*</span></label>
+                        <input type="text" id="eventName" name="eventName" required placeholder="Jane Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventEmail">Email <span class="required">*</span></label>
+                        <input type="email" id="eventEmail" name="eventEmail" required placeholder="name@example.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventPhone">Phone number</label>
+                        <input type="tel" id="eventPhone" name="eventPhone" placeholder="+34 612 34 56 78">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventOrg">Company / Organization</label>
+                        <input type="text" id="eventOrg" name="eventOrg" placeholder="Your company or community">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventDate">Preferred date <span class="required">*</span></label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTime">Preferred time <span class="required">*</span></label>
+                        <input type="text" id="eventTime" name="eventTime" required placeholder="e.g. 18:00 - 21:00">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventAttendees">Expected attendees <span class="required">*</span></label>
+                        <input type="number" id="eventAttendees" name="eventAttendees" required min="1" placeholder="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventFormat">Event format <span class="required">*</span></label>
+                        <select id="eventFormat" name="eventFormat" required>
+                            <option value="" disabled selected>Select a format</option>
+                            <option value="Meetup">Meetup</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Networking">Networking</option>
+                            <option value="Conference / Talk">Conference / Talk</option>
+                            <option value="Private Event">Private Event</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Do you need catering (food &amp; drinks)? <span class="required">*</span></label>
+                    <div class="form-options">
+                        <label class="form-option"><input type="radio" name="eventCatering" value="Yes" required><span>Yes</span></label>
+                        <label class="form-option"><input type="radio" name="eventCatering" value="No"><span>No</span></label>
+                        <label class="form-option"><input type="radio" name="eventCatering" value="Not sure yet"><span>Not sure yet</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="eventDetails">Tell us about your event</label>
+                    <textarea id="eventDetails" name="eventDetails" rows="3" placeholder="What's the event about? Any specific requirements (AV setup, seating layout, etc.)?"></textarea>
+                </div>
+                <button type="submit" class="btn-primary form-submit">
+                    Request Info <span class="material-icons-outlined" style="font-size: 20px;">chevron_right</span>
+                </button>
+                <div id="eventsFormMessage" class="form-message"></div>
+            </form>
+            <p class="final-cta-note reveal" style="margin-top: 24px;">Prefer email? Write us at <a href="mailto:elias.casado@novatalent.com" style="color: var(--nova-accent); text-decoration: none;">elias.casado@novatalent.com</a></p>
+        </div>
+    </section>
+
     <!-- ── APPLY ── -->
     <section class="final-cta" id="reserve">
         <div class="final-cta-glow"></div>
@@ -1418,32 +1554,20 @@
         // ── Form submission to Google Sheets via hidden iframe ──
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzP68oGkOWRW5xQo6sx9ERvDuQGNTC0L310PakURtoXF7qtl1YF2oeu0FCzNfgW969LbQ/exec';
 
-        document.getElementById('novaHouseForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = e.target;
+        function submitToGoogleSheet(form, fields, messageEl, successText) {
             const submitBtn = form.querySelector('.form-submit');
-            const message = document.getElementById('formMessage');
             const originalHTML = submitBtn.innerHTML;
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
-            message.className = 'form-message';
-            message.textContent = '';
+            messageEl.className = 'form-message';
+            messageEl.textContent = '';
 
             const hiddenForm = document.createElement('form');
             hiddenForm.method = 'POST';
             hiddenForm.action = GOOGLE_SCRIPT_URL;
             hiddenForm.target = 'hidden_iframe';
             hiddenForm.style.display = 'none';
-
-            const fields = {
-                firstName: form.firstName.value,
-                lastName: form.lastName.value,
-                phone: form.phone.value,
-                email: form.email.value,
-                startDate: form.startDate.value,
-                comments: form.comments.value
-            };
 
             for (const [key, value] of Object.entries(fields)) {
                 const input = document.createElement('input');
@@ -1458,12 +1582,46 @@
             document.body.removeChild(hiddenForm);
 
             setTimeout(() => {
-                message.className = 'form-message success';
-                message.textContent = 'Application sent! We will be in touch soon.';
+                messageEl.className = 'form-message success';
+                messageEl.textContent = successText;
                 form.reset();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalHTML;
             }, 1500);
+        }
+
+        // ── Coworking form ──
+        document.getElementById('novaHouseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            submitToGoogleSheet(form, {
+                formType: 'coworking',
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                startDate: form.startDate.value,
+                comments: form.comments.value
+            }, document.getElementById('formMessage'), 'Application sent! We will be in touch soon.');
+        });
+
+        // ── Events form ──
+        document.getElementById('eventsForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            submitToGoogleSheet(form, {
+                formType: 'events',
+                name: form.eventName.value,
+                email: form.eventEmail.value,
+                phone: form.eventPhone.value,
+                organization: form.eventOrg.value,
+                date: form.eventDate.value,
+                time: form.eventTime.value,
+                attendees: form.eventAttendees.value,
+                format: form.eventFormat.value,
+                catering: form.eventCatering.value,
+                details: form.eventDetails.value
+            }, document.getElementById('eventsFormMessage'), 'Request sent! We will get back to you shortly.');
         });
     </script>
 
