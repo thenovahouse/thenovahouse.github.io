@@ -1350,6 +1350,8 @@
         </div>
     </section>
 
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
     <!-- ── FOOTER ── -->
     <footer class="footer">
         <div class="container">
@@ -1413,10 +1415,10 @@
             });
         });
 
-        // ── Form submission to Google Sheets ──
+        // ── Form submission to Google Sheets via hidden iframe ──
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzP68oGkOWRW5xQo6sx9ERvDuQGNTC0L310PakURtoXF7qtl1YF2oeu0FCzNfgW969LbQ/exec';
 
-        document.getElementById('novaHouseForm').addEventListener('submit', async (e) => {
+        document.getElementById('novaHouseForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const form = e.target;
             const submitBtn = form.querySelector('.form-submit');
@@ -1428,7 +1430,13 @@
             message.className = 'form-message';
             message.textContent = '';
 
-            const data = {
+            const hiddenForm = document.createElement('form');
+            hiddenForm.method = 'POST';
+            hiddenForm.action = GOOGLE_SCRIPT_URL;
+            hiddenForm.target = 'hidden_iframe';
+            hiddenForm.style.display = 'none';
+
+            const fields = {
                 firstName: form.firstName.value,
                 lastName: form.lastName.value,
                 phone: form.phone.value,
@@ -1437,23 +1445,25 @@
                 comments: form.comments.value
             };
 
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    redirect: 'follow',
-                    body: JSON.stringify(data)
-                });
+            for (const [key, value] of Object.entries(fields)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                hiddenForm.appendChild(input);
+            }
+
+            document.body.appendChild(hiddenForm);
+            hiddenForm.submit();
+            document.body.removeChild(hiddenForm);
+
+            setTimeout(() => {
                 message.className = 'form-message success';
                 message.textContent = 'Application sent! We will be in touch soon.';
                 form.reset();
-            } catch (err) {
-                message.className = 'form-message error';
-                message.textContent = 'Something went wrong. Please try again or email us directly.';
-            }
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHTML;
+            }, 1500);
         });
     </script>
 
