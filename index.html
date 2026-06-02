@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova House | Your Workspace in Madrid</title>
+    <meta name="description" content="Work from Nova's headquarters in Madrid. Dedicated desks, podcast studio, and event space for the Nova community. From 340 euros per month.">
+    <meta property="og:title" content="Nova House | Your Workspace in Madrid">
+    <meta property="og:description" content="A coworking, a studio, and an event space built for the Nova community. Limited spots available.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --nova-accent: #0EB0A4;
+            --nova-accent-rgb: 14, 176, 164;
+            --nova-bg-primary: #090E12;
+            --nova-bg-secondary: #131C24;
+            --nova-bg-tertiary: #1a2630;
+            --nova-text-primary: #FFFFFF;
+            --nova-text-secondary: rgba(255, 255, 255, 0.7);
+            --nova-text-tertiary: rgba(255, 255, 255, 0.4);
+            --font-display: 'DM Sans', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--nova-bg-primary);
+            color: var(--nova-text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { border-radius: 8px; background: var(--nova-bg-primary); }
+        ::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--nova-bg-secondary); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── NAV ── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: background 0.3s, padding 0.3s, backdrop-filter 0.3s;
+        }
+
+        .nav.scrolled {
+            background: rgba(9, 14, 18, 0.92);
+            backdrop-filter: blur(20px);
+            padding: 12px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--nova-text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span { color: var(--nova-accent); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--nova-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--nova-text-primary); }
+
+        .nav-cta {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--nova-bg-primary) !important;
+            background: var(--nova-accent);
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--nova-text-primary);
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--nova-bg-primary);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--nova-text-primary);
+            text-decoration: none;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: var(--nova-text-primary);
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 14, 18, 0.7) 0%,
+                rgba(9, 14, 18, 0.35) 35%,
+                rgba(9, 14, 18, 0.35) 55%,
+                rgba(9, 14, 18, 0.92) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(var(--nova-accent-rgb), 0.1), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--nova-accent);
+            background: rgba(var(--nova-accent-rgb), 0.1);
+            border: 1px solid rgba(var(--nova-accent-rgb), 0.25);
+            padding: 8px 20px;
+            border-radius: 100px;
+            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(4rem, 12vw, 9rem);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-weight: 400;
+            color: var(--nova-text-secondary);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--nova-bg-primary);
+            background: var(--nova-accent);
+            padding: 16px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--nova-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .btn-secondary:hover { color: var(--nova-text-primary); }
+
+        .hero-note {
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--nova-text-tertiary);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: var(--nova-text-tertiary);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ── SECTIONS GENERAL ── */
+        section { padding: 120px 0; }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--nova-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--nova-text-secondary);
+            max-width: 620px;
+            line-height: 1.7;
+        }
+
+        .section-header { margin-bottom: 64px; }
+        .section-header.center { text-align: center; }
+        .section-header.center .section-desc { margin: 0 auto; }
+
+        /* ── REVEAL ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ── ABOUT / QUOTE ── */
+        .about {
+            background: var(--nova-bg-primary);
+        }
+
+        .about-quote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 500;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            text-align: center;
+            letter-spacing: -0.01em;
+        }
+
+        .about-quote-attr {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--nova-text-tertiary);
+            margin-bottom: 80px;
+        }
+
+        /* ── PILLARS ── */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pillar-card {
+            background: var(--nova-bg-secondary);
+            border-radius: 16px;
+            padding: 40px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .pillar-card:hover {
+            border-color: rgba(var(--nova-accent-rgb), 0.2);
+            transform: translateY(-4px);
+        }
+
+        .pillar-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(var(--nova-accent-rgb), 0.1);
+            color: var(--nova-accent);
+            margin-bottom: 24px;
+            font-size: 28px;
+        }
+
+        .pillar-card h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .pillar-card p {
+            font-size: 0.95rem;
+            color: var(--nova-text-secondary);
+            line-height: 1.65;
+        }
+
+        /* ── VIDEO ── */
+        .video-section {
+            background: var(--nova-bg-secondary);
+            padding: 100px 0;
+        }
+
+        .video-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+        }
+
+        /* ── FEATURES ── */
+        .features { background: var(--nova-bg-primary); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 28px 24px;
+            background: var(--nova-bg-secondary);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: border-color 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: rgba(var(--nova-accent-rgb), 0.15);
+        }
+
+        .feature-icon {
+            color: var(--nova-accent);
+            font-size: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-item h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--nova-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ── PRICING ── */
+        .pricing { background: var(--nova-bg-secondary); }
+
+        .pricing-includes {
+            max-width: 700px;
+            margin: 0 auto 56px;
+        }
+
+        .pricing-checklist {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 40px;
+        }
+
+        .pricing-checklist li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            color: var(--nova-text-secondary);
+            padding: 8px 0;
+        }
+
+        .pricing-checklist .material-icons-outlined {
+            color: var(--nova-accent);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .pricing-options {
+            display: flex;
+            align-items: stretch;
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--nova-bg-primary);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .pricing-option {
+            flex: 1;
+            padding: 44px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-option.featured {
+            background: rgba(var(--nova-accent-rgb), 0.04);
+        }
+
+        .pricing-option-badge {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--nova-bg-primary);
+            background: var(--nova-accent);
+            padding: 4px 14px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+        }
+
+        .pricing-option-tier {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--nova-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .pricing-option-amount {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 3rem;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .pricing-option-amount span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--nova-text-secondary);
+        }
+
+        .pricing-option-desc {
+            font-size: 0.85rem;
+            color: var(--nova-text-tertiary);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .pricing-divider {
+            width: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            align-self: stretch;
+        }
+
+        .btn-primary-outline {
+            background: rgba(var(--nova-accent-rgb), 0.12) !important;
+            color: var(--nova-accent) !important;
+        }
+
+        .btn-primary-outline:hover {
+            background: rgba(var(--nova-accent-rgb), 0.2) !important;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 0.9rem;
+            color: var(--nova-text-tertiary);
+        }
+
+        .pricing-note strong {
+            color: var(--nova-accent);
+            font-weight: 600;
+        }
+
+        /* ── LOCATION ── */
+        .location { background: var(--nova-bg-primary); }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .location-info h3 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .location-detail .material-icons-outlined {
+            color: var(--nova-accent);
+            font-size: 22px;
+            margin-top: 2px;
+        }
+
+        .location-detail p {
+            font-size: 0.95rem;
+            color: var(--nova-text-secondary);
+            line-height: 1.5;
+        }
+
+        .location-detail strong {
+            color: var(--nova-text-primary);
+            font-weight: 600;
+        }
+
+        .location-map-link {
+            display: block;
+            text-decoration: none;
+            color: var(--nova-text-primary);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .location-map-link:hover {
+            border-color: rgba(var(--nova-accent-rgb), 0.3);
+            transform: translateY(-4px);
+        }
+
+        .location-map-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 380px;
+            background: var(--nova-bg-secondary);
+        }
+
+        /* ── FAQ ── */
+        .faq { background: var(--nova-bg-secondary); }
+
+        .faq-list {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 24px 0;
+            background: none;
+            border: none;
+            color: var(--nova-text-primary);
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover { color: var(--nova-accent); }
+
+        .faq-question .material-icons-outlined {
+            color: var(--nova-text-tertiary);
+            transition: transform 0.3s;
+            font-size: 24px;
+        }
+
+        .faq-item.open .faq-question .material-icons-outlined {
+            transform: rotate(180deg);
+            color: var(--nova-accent);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-bottom: 24px;
+        }
+
+        .faq-answer p {
+            font-size: 0.95rem;
+            color: var(--nova-text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            background: var(--nova-bg-primary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(var(--nova-accent-rgb), 0.08), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .final-cta .container { position: relative; z-index: 1; }
+
+        .final-cta h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .final-cta .section-desc {
+            margin: 0 auto 40px;
+            max-width: 500px;
+        }
+
+        .final-cta-note {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--nova-text-tertiary);
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--nova-bg-secondary);
+            padding: 48px 0 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--nova-text-primary);
+            text-decoration: none;
+        }
+
+        .footer-logo span { color: var(--nova-accent); }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--nova-text-tertiary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--nova-text-secondary); }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.8rem;
+            color: var(--nova-text-tertiary);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .pillars-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .location-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 80px 0; }
+
+            .nav-links { display: none; }
+            .nav-hamburger { display: block; }
+
+            .hero h1 { font-size: clamp(3.5rem, 15vw, 5.5rem); }
+
+            .pillars-grid { grid-template-columns: 1fr; gap: 16px; }
+            .pillar-card { padding: 32px 24px; }
+
+            .features-grid { grid-template-columns: 1fr; }
+
+            .pricing-options { flex-direction: column; }
+            .pricing-divider { width: auto; height: 1px; align-self: auto; }
+            .pricing-option { padding: 32px 28px; }
+            .pricing-checklist { grid-template-columns: 1fr; }
+
+            .location-grid { grid-template-columns: 1fr; }
+            .location-map { height: 280px; }
+
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAV ── -->
+    <nav class="nav" id="nav">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo">Nova<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#coworking">Coworking</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#reserve" class="nav-cta">Reserve Your Desk</a></li>
+            </ul>
+            <button class="nav-hamburger" id="menuOpen" aria-label="Open menu">
+                <span class="material-icons-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ── MOBILE MENU ── -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">
+            <span class="material-icons-outlined">close</span>
+        </button>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#coworking" onclick="closeMenu()">Coworking</a>
+        <a href="#pricing" onclick="closeMenu()">Pricing</a>
+        <a href="#location" onclick="closeMenu()">Location</a>
+        <a href="#faq" onclick="closeMenu()">FAQ</a>
+        <a href="#reserve" class="btn-primary" onclick="closeMenu()">Reserve Your Desk</a>
+    </div>
+
+    <!-- ── HERO ── -->
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="nova-house-tour.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="material-icons-outlined" style="font-size: 16px;">place</span>
+                Now Open in Madrid
+            </div>
+            <h1>Nova<br>House</h1>
+            <p class="hero-subtitle">
+                A coworking, a studio, and an event space. Created by the community, for the community.
+            </p>
+            <div class="hero-ctas">
+                <a href="#reserve" class="btn-primary">Reserve Your Desk</a>
+                <a href="#about" class="btn-secondary">
+                    Discover more <span class="material-icons-outlined" style="font-size: 18px;">chevron_right</span>
+                </a>
+            </div>
+            <p class="hero-note">Only 5-10 spots available. First come, first served.</p>
+        </div>
+        <div class="scroll-indicator">
+            <span class="material-icons-outlined">keyboard_arrow_down</span>
+        </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="reveal">
+                <p class="about-quote">
+                    "Madrid is at its best moment. Startups, talent, capital, energy. Now, talent has its own place where it all comes together."
+                </p>
+                <p class="about-quote-attr">Ramon Rodriganez, Co-Founder & CEO at Nova</p>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card reveal reveal-delay-1">
+                    <div class="pillar-icon">
+                        <span class="material-icons-outlined">groups</span>
+                    </div>
+                    <h3>Coworking</h3>
+                    <p>Your dedicated desk at Nova HQ. Work shoulder to shoulder with the team and Madrid's most ambitious professionals.</p>
+                </div>
+                <div class="pillar-card reveal reveal-delay-2">
+                    <div class="pillar-icon">
+                        <span class="material-icons-outlined">podcasts</span>
+                    </div>
+                    <h3>Podcast Studio</h3>
+                    <p>A professional recording studio for the Nova Podcast and your own content. Your ideas, amplified.</p>
+                </div>
+                <div class="pillar-card reveal reveal-delay-3">
+                    <div class="pillar-icon">
+                        <span class="material-icons-outlined">celebration</span>
+                    </div>
+                    <h3>Event Space</h3>
+                    <p>Community events, meetups, and collaborations. Today's strangers become tomorrow's network.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VIDEO ── -->
+    <section class="video-section">
+        <div class="container">
+            <div class="section-header center reveal">
+                <p class="section-label">Step Inside</p>
+                <h2 class="section-title">Welcome to Nova House</h2>
+                <p class="section-desc">A space designed for the community. For things to happen.</p>
+            </div>
+            <div class="video-wrapper reveal">
+                <video controls playsinline preload="metadata">
+                    <source src="nova-house-tour.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FEATURES (WHAT'S INCLUDED) ── -->
+    <section class="features" id="coworking">
+        <div class="container">
+            <div class="section-header center reveal">
+                <p class="section-label">What's Included</p>
+                <h2 class="section-title">Everything you need,<br>nothing you don't</h2>
+                <p class="section-desc">Focus on your work. We handle the rest.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item reveal reveal-delay-1">
+                    <span class="material-icons-outlined feature-icon">desk</span>
+                    <div>
+                        <h4>Dedicated Desk</h4>
+                        <p>Your own permanent workspace. Come and go, your setup stays.</p>
+                    </div>
+                </div>
+                <div class="feature-item reveal reveal-delay-1">
+                    <span class="material-icons-outlined feature-icon">desktop_windows</span>
+                    <div>
+                        <h4>External Monitor</h4>
+                        <p>A second screen ready for you, every day.</p>
+                    </div>
+                </div>
+                <div class="feature-item reveal reveal-delay-2">
+                    <span class="material-icons-outlined feature-icon">meeting_room</span>
+                    <div>
+                        <h4>Meeting Room</h4>
+                        <p>Private space for calls and client meetings.</p>
+                    </div>
+                </div>
+                <div class="feature-item reveal reveal-delay-2">
+                    <span class="material-icons-outlined feature-icon">local_cafe</span>
+                    <div>
+                        <h4>Unlimited Coffee & Beer</h4>
+                        <p>Fuel your mornings and celebrate your wins.</p>
+                    </div>
+                </div>
+                <div class="feature-item reveal reveal-delay-3">
+                    <span class="material-icons-outlined feature-icon">wifi</span>
+                    <div>
+                        <h4>High-Speed WiFi</h4>
+                        <p>Fast, reliable connectivity for everything you do.</p>
+                    </div>
+                </div>
+                <div class="feature-item reveal reveal-delay-3">
+                    <span class="material-icons-outlined feature-icon">diversity_3</span>
+                    <div>
+                        <h4>The Nova Team</h4>
+                        <p>Work alongside Nova's own team. Not just a desk, a community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRICING ── -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header center reveal">
+                <p class="section-label">Pricing</p>
+                <h2 class="section-title">Simple, transparent pricing</h2>
+                <p class="section-desc">Everything included. No hidden fees. Monthly billing, cancel anytime.</p>
+            </div>
+
+            <div class="pricing-includes reveal">
+                <ul class="pricing-checklist">
+                    <li><span class="material-icons-outlined">check_circle</span> Dedicated desk & external monitor</li>
+                    <li><span class="material-icons-outlined">check_circle</span> Meeting room access</li>
+                    <li><span class="material-icons-outlined">check_circle</span> Unlimited coffee & beer</li>
+                    <li><span class="material-icons-outlined">check_circle</span> High-speed WiFi</li>
+                    <li><span class="material-icons-outlined">check_circle</span> Office hours 8:00 - 20:00</li>
+                    <li><span class="material-icons-outlined">check_circle</span> Nova team environment</li>
+                </ul>
+            </div>
+
+            <div class="pricing-options reveal">
+                <div class="pricing-option featured">
+                    <div class="pricing-option-badge">Best Value</div>
+                    <p class="pricing-option-tier">Nova Members</p>
+                    <p class="pricing-option-amount">&euro;340<span>/mo</span></p>
+                    <p class="pricing-option-desc">Active members with a current Nova subscription</p>
+                    <a href="#reserve" class="btn-primary">Reserve Your Desk</a>
+                </div>
+                <div class="pricing-divider"></div>
+                <div class="pricing-option">
+                    <p class="pricing-option-tier">Novas</p>
+                    <p class="pricing-option-amount">&euro;400<span>/mo</span></p>
+                    <p class="pricing-option-desc">Accepted Novas without an active membership</p>
+                    <a href="#reserve" class="btn-primary btn-primary-outline">Reserve Your Desk</a>
+                </div>
+            </div>
+
+            <p class="pricing-note reveal">Limited to <strong>5-10 spots</strong>. Reserve yours before they're gone.</p>
+        </div>
+    </section>
+
+    <!-- ── LOCATION ── -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Location</p>
+                <h2 class="section-title">Find us in Madrid</h2>
+            </div>
+            <div class="location-grid">
+                <div class="location-info reveal">
+                    <h3>Nova House</h3>
+                    <div class="location-detail">
+                        <span class="material-icons-outlined">location_on</span>
+                        <p><strong>Calle Aranjuez 2</strong><br>28003 Madrid, Spain</p>
+                    </div>
+                    <div class="location-detail">
+                        <span class="material-icons-outlined">directions_subway</span>
+                        <p>Minutes from <strong>Cuatro Caminos</strong> metro station</p>
+                    </div>
+                    <div class="location-detail">
+                        <span class="material-icons-outlined">schedule</span>
+                        <p>Monday to Friday, <strong>8:00 - 20:00</strong></p>
+                    </div>
+                    <div class="location-detail">
+                        <span class="material-icons-outlined">calendar_month</span>
+                        <p>Open from <strong>June 2026</strong></p>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=Calle+Aranjuez+2,+Madrid,+Spain" target="_blank" rel="noopener" class="location-map-link reveal reveal-delay-1">
+                    <div class="location-map-placeholder">
+                        <span class="material-icons-outlined" style="font-size: 48px; color: var(--nova-accent); margin-bottom: 12px;">map</span>
+                        <p style="font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 4px;">View on Google Maps</p>
+                        <p style="font-size: 0.85rem; color: var(--nova-text-tertiary);">Calle Aranjuez 2, 28003 Madrid</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header center reveal">
+                <p class="section-label">FAQ</p>
+                <h2 class="section-title">Common questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>Who can join Nova House?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nova House is exclusively for Nova members and Novas. This is not a public coworking space. You need to be part of the Nova community to reserve a desk.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>What are the office hours?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Standard access is Monday to Friday, 8:00 to 20:00. Extended hours may be available in the future based on demand.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>What's the minimum commitment?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Monthly. We use a simple service agreement with monthly billing. No long-term lock-in required.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>How does billing work?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nova Global Spain S.L. issues a monthly invoice. VAT is applied as required by Spanish law.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>How many spots are available?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're opening 5 to 10 desks in this initial phase. Spots are confirmed on a first-come, first-served basis.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>Can I use the podcast studio?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. The recording studio is available to Nova House members for content creation. Reach out to us to coordinate scheduling.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        <span>Can I host events at Nova House?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're open to collaborating with other communities and hosting events. Get in touch and let's talk about your idea.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FINAL CTA ── -->
+    <section class="final-cta" id="reserve">
+        <div class="final-cta-glow"></div>
+        <div class="container">
+            <div class="reveal">
+                <h2>Ready to work at Nova House?</h2>
+                <p class="section-desc">Join a select group of professionals building the future from Madrid.</p>
+                <!-- REPLACE the href below with your actual Typeform URL -->
+                <a href="https://novatalent.typeform.com/NovaHouse" target="_blank" rel="noopener" class="btn-primary">
+                    Reserve Your Desk <span class="material-icons-outlined" style="font-size: 20px;">chevron_right</span>
+                </a>
+                <p class="final-cta-note">Limited spots. Questions? Email <a href="mailto:elias.casado@novatalent.com" style="color: var(--nova-accent); text-decoration: none;">elias.casado@novatalent.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="https://novatalent.com" class="footer-logo" target="_blank">Nova<span>.</span></a>
+                <ul class="footer-links">
+                    <li><a href="https://novatalent.com" target="_blank">Top Talent</a></li>
+                    <li><a href="https://novatalent.com/companies" target="_blank">Companies</a></li>
+                    <li><a href="https://novatalent.com/about" target="_blank">About Nova</a></li>
+                    <li><a href="https://www.linkedin.com/company/novatalent/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/novatalent/" target="_blank">Instagram</a></li>
+                </ul>
+            </div>
+            <p class="footer-bottom">&copy; 2026 Nova Global Spain S.L. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ── Nav scroll effect ──
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // ── Mobile menu ──
+        const mobileMenu = document.getElementById('mobileMenu');
+        document.getElementById('menuOpen').addEventListener('click', () => mobileMenu.classList.add('open'));
+        document.getElementById('menuClose').addEventListener('click', () => mobileMenu.classList.remove('open'));
+        function closeMenu() { mobileMenu.classList.remove('open'); }
+
+        // ── Scroll reveal ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ── FAQ accordion ──
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+
+        // ── Smooth scroll for anchor links ──
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
