@@ -74,15 +74,15 @@
         }
 
         .nav-logo {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--nova-text-primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: -0.02em;
         }
 
-        .nav-logo span { color: var(--nova-accent); }
+        .nav-logo-img {
+            height: 28px;
+            filter: invert(1) hue-rotate(180deg);
+        }
 
         .nav-links {
             display: flex;
@@ -543,6 +543,13 @@
             padding: 44px 40px;
             text-align: center;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pricing-option:not(.featured) {
+            padding-top: 84px;
         }
 
         .pricing-option.featured {
@@ -663,28 +670,18 @@
             font-weight: 600;
         }
 
-        .location-map-link {
-            display: block;
-            text-decoration: none;
-            color: var(--nova-text-primary);
+        .location-map {
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .location-map-link:hover {
-            border-color: rgba(var(--nova-accent-rgb), 0.3);
-            transform: translateY(-4px);
-        }
-
-        .location-map-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             height: 380px;
-            background: var(--nova-bg-secondary);
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0.8) brightness(0.7) contrast(1.1);
         }
 
         /* ── FAQ ── */
@@ -802,14 +799,10 @@
         }
 
         .footer-logo {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--nova-text-primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
-
-        .footer-logo span { color: var(--nova-accent); }
 
         .footer-links {
             display: flex;
@@ -873,7 +866,7 @@
     <!-- ── NAV ── -->
     <nav class="nav" id="nav">
         <div class="container nav-inner">
-            <a href="#" class="nav-logo">Nova<span>.</span></a>
+            <a href="#" class="nav-logo"><img src="nova_logo.png" alt="Nova" class="nav-logo-img"></a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#coworking">Coworking</a></li>
@@ -935,9 +928,9 @@
         <div class="container">
             <div class="reveal">
                 <p class="about-quote">
-                    "Madrid is at its best moment. Startups, talent, capital, energy. Now, talent has its own place where it all comes together."
+                    "You are the average of the five people you spend the most time with."
                 </p>
-                <p class="about-quote-attr">Ramon Rodriganez, Co-Founder & CEO at Nova</p>
+                <p class="about-quote-attr">Jim Rohn</p>
             </div>
 
             <div class="pillars-grid">
@@ -1009,8 +1002,8 @@
                 <div class="feature-item reveal reveal-delay-2">
                     <span class="material-icons-outlined feature-icon">meeting_room</span>
                     <div>
-                        <h4>Meeting Room</h4>
-                        <p>Private space for calls and client meetings.</p>
+                        <h4>Meeting Rooms & Phone Booths</h4>
+                        <p>Private spaces for calls and client meetings, plus 3 phone booths for quick calls.</p>
                     </div>
                 </div>
                 <div class="feature-item reveal reveal-delay-2">
@@ -1061,7 +1054,7 @@
             <div class="pricing-options reveal">
                 <div class="pricing-option featured">
                     <div class="pricing-option-badge">Best Value</div>
-                    <p class="pricing-option-tier">Nova Members</p>
+                    <p class="pricing-option-tier">Members</p>
                     <p class="pricing-option-amount">&euro;340<span>/mo</span></p>
                     <p class="pricing-option-desc">Active members with a current Nova subscription</p>
                     <a href="#reserve" class="btn-primary">Reserve Your Desk</a>
@@ -1106,13 +1099,14 @@
                         <p>Open from <strong>June 2026</strong></p>
                     </div>
                 </div>
-                <a href="https://maps.google.com/maps?q=Calle+Aranjuez+2,+Madrid,+Spain" target="_blank" rel="noopener" class="location-map-link reveal reveal-delay-1">
-                    <div class="location-map-placeholder">
-                        <span class="material-icons-outlined" style="font-size: 48px; color: var(--nova-accent); margin-bottom: 12px;">map</span>
-                        <p style="font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 4px;">View on Google Maps</p>
-                        <p style="font-size: 0.85rem; color: var(--nova-text-tertiary);">Calle Aranjuez 2, 28003 Madrid</p>
-                    </div>
-                </a>
+                <div class="location-map reveal reveal-delay-1">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Calle+Aranjuez+2,+Madrid,+Spain&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -1176,7 +1170,7 @@
                         <span class="material-icons-outlined">expand_more</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Yes. The recording studio is available to Nova House members for content creation. Reach out to us to coordinate scheduling.</p>
+                        <p>Yes. The recording studio is available to Nova House members for content creation at an additional cost, tailored to your specific needs. Reach out to us to discuss pricing and scheduling.</p>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -1197,7 +1191,7 @@
         <div class="final-cta-glow"></div>
         <div class="container">
             <div class="reveal">
-                <h2>Ready to work at Nova House?</h2>
+                <h2>Ready to work at The Nova House?</h2>
                 <p class="section-desc">Join a select group of professionals building the future from Madrid.</p>
                 <!-- REPLACE the href below with your actual Typeform URL -->
                 <a href="https://novatalent.typeform.com/NovaHouse" target="_blank" rel="noopener" class="btn-primary">
@@ -1212,7 +1206,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-inner">
-                <a href="https://novatalent.com" class="footer-logo" target="_blank">Nova<span>.</span></a>
+                <a href="https://novatalent.com" class="footer-logo" target="_blank"><img src="nova_logo.png" alt="Nova" class="nav-logo-img"></a>
                 <ul class="footer-links">
                     <li><a href="https://novatalent.com" target="_blank">Top Talent</a></li>
                     <li><a href="https://novatalent.com/companies" target="_blank">Companies</a></li>
