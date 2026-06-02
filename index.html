@@ -172,7 +172,7 @@
             overflow: hidden;
         }
 
-        .hero-video {
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -433,24 +433,43 @@
             line-height: 1.65;
         }
 
-        /* ── VIDEO ── */
-        .video-section {
+        /* ── GALLERY ── */
+        .gallery-section {
             background: var(--nova-bg-secondary);
             padding: 100px 0;
         }
 
-        .video-wrapper {
-            max-width: 480px;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 16px;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .gallery-item {
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
         }
 
-        .video-wrapper video {
+        .gallery-item img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-item.wide {
+            grid-column: 1 / -1;
+            max-height: 400px;
         }
 
         /* ── FEATURES ── */
@@ -1019,6 +1038,9 @@
             .pricing-option { padding: 32px 28px; }
             .pricing-checklist { grid-template-columns: 1fr; }
 
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item.wide { max-height: 260px; }
+
             .location-grid { grid-template-columns: 1fr; }
             .location-map { height: 280px; }
 
@@ -1066,9 +1088,7 @@
 
     <!-- ── HERO ── -->
     <section class="hero" id="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="nova-house-tour.mp4" type="video/mp4">
-        </video>
+        <img src="space-3.jpg" alt="Nova House workspace" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-glow"></div>
         <div class="hero-content">
@@ -1129,19 +1149,24 @@
         </div>
     </section>
 
-    <!-- ── VIDEO ── -->
-    <section class="video-section">
+    <!-- ── GALLERY ── -->
+    <section class="gallery-section">
         <div class="container">
             <div class="section-header center reveal">
                 <p class="section-label">Step Inside</p>
                 <h2 class="section-title">Welcome to Nova House</h2>
                 <p class="section-desc">A space designed for the community. For things to happen.</p>
             </div>
-            <div class="video-wrapper reveal">
-                <video controls playsinline preload="metadata">
-                    <source src="nova-house-tour.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal reveal-delay-1">
+                    <img src="space-1.jpg" alt="Nova House meeting area with green wall" loading="lazy">
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <img src="space-2.jpg" alt="Nova House open workspace with industrial windows" loading="lazy">
+                </div>
+                <div class="gallery-item wide reveal reveal-delay-3">
+                    <img src="space-3.jpg" alt="Nova House lounge and coworking area" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
