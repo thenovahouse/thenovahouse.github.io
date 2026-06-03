@@ -441,10 +441,9 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -467,9 +466,13 @@
             transform: scale(1.03);
         }
 
+        .gallery-item {
+            height: 260px;
+        }
+
         .gallery-item.wide {
             grid-column: 1 / -1;
-            max-height: 400px;
+            height: 340px;
         }
 
         /* ── FEATURES ── */
@@ -1039,7 +1042,8 @@
             .pricing-checklist { grid-template-columns: 1fr; }
 
             .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-item.wide { max-height: 260px; }
+            .gallery-item { height: 220px; }
+            .gallery-item.wide { height: 220px; }
 
             .location-grid { grid-template-columns: 1fr; }
             .location-map { height: 280px; }
@@ -1088,7 +1092,7 @@
 
     <!-- ── HERO ── -->
     <section class="hero" id="hero">
-        <img src="space-3.jpg" alt="Nova House workspace" class="hero-bg">
+        <img src="IMG_8621.jpg" alt="Nova House workspace" class="hero-bg">
         <div class="hero-overlay"></div>
         <div class="hero-glow"></div>
         <div class="hero-content">
@@ -1159,13 +1163,25 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item reveal reveal-delay-1">
-                    <img src="space-1.jpg" alt="Nova House meeting area with green wall" loading="lazy">
+                    <img src="IMG_8613.jpg" alt="Nova House lounge with sofa and TV" loading="lazy">
                 </div>
                 <div class="gallery-item reveal reveal-delay-2">
-                    <img src="space-2.jpg" alt="Nova House open workspace with industrial windows" loading="lazy">
+                    <img src="IMG_8612.jpg" alt="Nova House green wall and meeting area" loading="lazy">
                 </div>
-                <div class="gallery-item wide reveal reveal-delay-3">
-                    <img src="space-3.jpg" alt="Nova House lounge and coworking area" loading="lazy">
+                <div class="gallery-item reveal reveal-delay-3">
+                    <img src="IMG_8607.jpg" alt="Nova House phone booth and workspace" loading="lazy">
+                </div>
+                <div class="gallery-item wide reveal">
+                    <img src="IMG_8621.jpg" alt="Nova House panoramic workspace view" loading="lazy">
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <img src="IMG_8614.jpg" alt="Nova House chill zone with brick wall" loading="lazy">
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <img src="IMG_8615.jpg" alt="Nova House desks with monitors" loading="lazy">
+                </div>
+                <div class="gallery-item reveal reveal-delay-3">
+                    <img src="IMG_8620.jpg" alt="Nova House open plan with natural light" loading="lazy">
                 </div>
             </div>
         </div>
