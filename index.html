@@ -549,35 +549,6 @@
             flex-shrink: 0;
         }
 
-        .pricing-options {
-            display: flex;
-            align-items: stretch;
-            max-width: 780px;
-            margin: 0 auto;
-            background: var(--nova-bg-primary);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-        }
-
-        .pricing-option {
-            flex: 1;
-            padding: 44px 40px;
-            text-align: center;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .pricing-option:not(.featured) {
-            padding-top: 84px;
-        }
-
-        .pricing-option.featured {
-            background: rgba(var(--nova-accent-rgb), 0.04);
-        }
-
         .pricing-option-badge {
             display: inline-block;
             font-family: var(--font-body);
@@ -592,7 +563,78 @@
             margin-bottom: 16px;
         }
 
-        .pricing-option-tier {
+        /* ── PRICING TOGGLE ── */
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            background: var(--nova-bg-primary);
+            border-radius: 12px;
+            padding: 4px;
+            max-width: 400px;
+            margin: 0 auto 40px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .pricing-tab {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: var(--nova-text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pricing-tab.active {
+            background: var(--nova-accent);
+            color: var(--nova-bg-primary);
+        }
+
+        .pricing-tab:hover:not(.active) {
+            color: var(--nova-text-primary);
+        }
+
+        /* ── PRICING GRID ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--nova-bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px 28px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(var(--nova-accent-rgb), 0.2);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            background: rgba(var(--nova-accent-rgb), 0.04);
+            border-color: rgba(var(--nova-accent-rgb), 0.3);
+            position: relative;
+        }
+
+        .pricing-card .pricing-option-badge {
+            margin-bottom: 12px;
+        }
+
+        .pricing-card-label {
             font-family: var(--font-body);
             font-size: 0.8rem;
             font-weight: 600;
@@ -602,32 +644,34 @@
             margin-bottom: 12px;
         }
 
-        .pricing-option-amount {
+        .pricing-card-amount {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 3rem;
+            font-size: 2.5rem;
             letter-spacing: -0.03em;
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .pricing-option-amount span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--nova-text-secondary);
-        }
-
-        .pricing-option-desc {
+        .pricing-card-period {
             font-size: 0.85rem;
             color: var(--nova-text-tertiary);
-            margin-bottom: 28px;
-            line-height: 1.5;
+            margin-bottom: 16px;
         }
 
-        .pricing-divider {
-            width: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            align-self: stretch;
+        .pricing-card-desc {
+            font-size: 0.85rem;
+            color: var(--nova-text-secondary);
+            line-height: 1.5;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .pricing-card-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 12px 24px;
+            font-size: 0.9rem;
         }
 
         .btn-primary-outline {
@@ -1036,9 +1080,11 @@
 
             .features-grid { grid-template-columns: 1fr; }
 
-            .pricing-options { flex-direction: column; }
-            .pricing-divider { width: auto; height: 1px; align-self: auto; }
-            .pricing-option { padding: 32px 28px; }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
             .pricing-checklist { grid-template-columns: 1fr; }
 
             .gallery-grid { grid-template-columns: 1fr; }
@@ -1052,6 +1098,12 @@
             .nova-form { padding: 32px 24px; }
             .footer-inner { flex-direction: column; text-align: center; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -1247,7 +1299,7 @@
             <div class="section-header center reveal">
                 <p class="section-label">Pricing</p>
                 <h2 class="section-title">Simple, transparent pricing</h2>
-                <p class="section-desc">Everything included. No hidden fees. Monthly billing, cancel anytime.</p>
+                <p class="section-desc">Everything included. No hidden fees. From a single day to a full year.</p>
             </div>
 
             <div class="pricing-includes reveal">
@@ -1261,24 +1313,79 @@
                 </ul>
             </div>
 
-            <div class="pricing-options reveal">
-                <div class="pricing-option featured">
-                    <div class="pricing-option-badge">Best Value</div>
-                    <p class="pricing-option-tier">Paying Members</p>
-                    <p class="pricing-option-amount">&euro;340<span>/mo</span></p>
-                    <p class="pricing-option-desc">With an active Nova membership</p>
-                    <a href="#reserve" class="btn-primary">Reserve Your Desk</a>
-                </div>
-                <div class="pricing-divider"></div>
-                <div class="pricing-option">
-                    <p class="pricing-option-tier">Non-Paying Members</p>
-                    <p class="pricing-option-amount">&euro;400<span>/mo</span></p>
-                    <p class="pricing-option-desc">Without an active Nova membership</p>
-                    <a href="#reserve" class="btn-primary btn-primary-outline">Reserve Your Desk</a>
-                </div>
+            <div class="pricing-toggle reveal">
+                <button class="pricing-tab active" data-tab="member" onclick="switchPricing('member')">Paying Members</button>
+                <button class="pricing-tab" data-tab="nonmember" onclick="switchPricing('nonmember')">Non-Paying Members</button>
             </div>
 
-            <p class="pricing-note reveal">Limited to <strong>10 spots</strong>. Reserve yours before they're gone.</p>
+            <div class="pricing-grid reveal" id="pricingGrid">
+
+                <div class="pricing-card">
+                    <p class="pricing-card-label">Day Pass</p>
+                    <p class="pricing-card-amount member-price">&euro;35</p>
+                    <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;45</p>
+                    <p class="pricing-card-period">per day</p>
+                    <p class="pricing-card-desc">Try it out. One full day at The Nova House.</p>
+                    <a href="https://buy.stripe.com/eVq5kDd95bG26aB2x0d7q0o" class="btn-primary btn-primary-outline pricing-card-btn member-link">Get Day Pass</a>
+                    <a href="https://buy.stripe.com/4gM28r0mjaBY56x8Vod7q0p" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Get Day Pass</a>
+                </div>
+
+                <div class="pricing-card">
+                    <p class="pricing-card-label">5 Days Pass</p>
+                    <p class="pricing-card-amount member-price">&euro;150</p>
+                    <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;175</p>
+                    <p class="pricing-card-period member-price">&euro;30/day</p>
+                    <p class="pricing-card-period nonmember-price" style="display:none;">&euro;35/day</p>
+                    <p class="pricing-card-desc">A flexible week. Use your 5 days whenever you want.</p>
+                    <a href="https://buy.stripe.com/eVqaEX1qn9xU7eF0oSd7q0q" class="btn-primary btn-primary-outline pricing-card-btn member-link">Get 5-Day Pass</a>
+                    <a href="https://buy.stripe.com/6oU4gz7OLcK68iJfjMd7q0r" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Get 5-Day Pass</a>
+                </div>
+
+                <div class="pricing-card">
+                    <p class="pricing-card-label">10 Days Pass</p>
+                    <p class="pricing-card-amount member-price">&euro;250</p>
+                    <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;300</p>
+                    <p class="pricing-card-period member-price">&euro;25/day</p>
+                    <p class="pricing-card-period nonmember-price" style="display:none;">&euro;30/day</p>
+                    <p class="pricing-card-desc">Two flexible weeks. Best value for regular visitors.</p>
+                    <a href="https://buy.stripe.com/14A8wP7OL25sbuV3B4d7q0s" class="btn-primary btn-primary-outline pricing-card-btn member-link">Get 10-Day Pass</a>
+                    <a href="https://buy.stripe.com/9B614n6KHbG256xgnQd7q0t" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Get 10-Day Pass</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-option-badge">Best Value</div>
+                    <p class="pricing-card-label">Monthly</p>
+                    <p class="pricing-card-amount member-price">&euro;340</p>
+                    <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;400</p>
+                    <p class="pricing-card-period">per month</p>
+                    <p class="pricing-card-desc">Your dedicated desk. Cancel anytime.</p>
+                    <a href="https://buy.stripe.com/00w28rb0XaBYeH77Rkd7q0u" class="btn-primary pricing-card-btn member-link">Reserve Your Desk</a>
+                    <a href="https://buy.stripe.com/fZu28r4CzcK61Ulb3wd7q0n" class="btn-primary pricing-card-btn nonmember-link" style="display:none;">Reserve Your Desk</a>
+                </div>
+
+                <div class="pricing-card">
+                    <p class="pricing-card-label">3–6 Months</p>
+                    <p class="pricing-card-amount member-price">&euro;323</p>
+                    <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;380</p>
+                    <p class="pricing-card-period">per month</p>
+                    <p class="pricing-card-desc">Commit for a quarter or more. Save on your monthly rate.</p>
+                    <a href="https://buy.stripe.com/9B64gzb0XdOa1UlfjMd7q0v" class="btn-primary btn-primary-outline pricing-card-btn member-link">Reserve Your Desk</a>
+                    <a href="https://buy.stripe.com/9B64gzb0XfWi7eF6Ngd7q0x" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Reserve Your Desk</a>
+                </div>
+
+                <div class="pricing-card">
+                    <p class="pricing-card-label">12 Months</p>
+                    <p class="pricing-card-amount member-price">&euro;289</p>
+                    <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;340</p>
+                    <p class="pricing-card-period">per month</p>
+                    <p class="pricing-card-desc">The best rate. A full year at The Nova House.</p>
+                    <a href="https://buy.stripe.com/14A6oHed9dOa0Qh7Rkd7q0w" class="btn-primary btn-primary-outline pricing-card-btn member-link">Reserve Your Desk</a>
+                    <a href="https://buy.stripe.com/3cI3cv7OL8tQaqR5Jcd7q0y" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Reserve Your Desk</a>
+                </div>
+
+            </div>
+
+            <p class="pricing-note reveal">All day passes are valid for <strong>1 year</strong> from purchase. Limited to <strong>10 spots</strong>.</p>
         </div>
     </section>
 
@@ -1488,6 +1595,15 @@
                 </div>
                 <div class="faq-item reveal">
                     <button class="faq-question">
+                        <span>How do day passes and multi-day passes work?</span>
+                        <span class="material-icons-outlined">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Day passes (1, 5, or 10 days) are one-time purchases valid for 1 year from the date of purchase. Use them whenever you want within that period — no need to use them on consecutive days. Simply show up during office hours and enjoy the full Nova House experience.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
                         <span>How does billing work?</span>
                         <span class="material-icons-outlined">expand_more</span>
                     </button>
@@ -1663,6 +1779,19 @@
                 details: form.eventDetails.value
             }, document.getElementById('eventsFormMessage'), 'Request sent! We will get back to you shortly.');
         });
+
+        // ── Pricing toggle ──
+        function switchPricing(type) {
+            document.querySelectorAll('.pricing-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.tab === type);
+            });
+            document.querySelectorAll('.member-price, .member-link').forEach(el => {
+                el.style.display = type === 'member' ? '' : 'none';
+            });
+            document.querySelectorAll('.nonmember-price, .nonmember-link').forEach(el => {
+                el.style.display = type === 'nonmember' ? '' : 'none';
+            });
+        }
     </script>
 
 </body>
