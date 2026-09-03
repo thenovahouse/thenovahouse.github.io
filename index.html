@@ -1326,8 +1326,7 @@
                     <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;45</p>
                     <p class="pricing-card-period">per day</p>
                     <p class="pricing-card-desc">Try it out. One full day at The Nova House.</p>
-                    <a href="https://buy.stripe.com/eVq5kDd95bG26aB2x0d7q0o" class="btn-primary btn-primary-outline pricing-card-btn member-link">Get Day Pass</a>
-                    <a href="https://buy.stripe.com/4gM28r0mjaBY56x8Vod7q0p" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Get Day Pass</a>
+                    <a href="#reserve" class="btn-primary btn-primary-outline pricing-card-btn" onclick="selectPlan('Day Pass')">Apply</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1337,8 +1336,7 @@
                     <p class="pricing-card-period member-price">&euro;30/day</p>
                     <p class="pricing-card-period nonmember-price" style="display:none;">&euro;35/day</p>
                     <p class="pricing-card-desc">A flexible week. Use your 5 days whenever you want.</p>
-                    <a href="https://buy.stripe.com/eVqaEX1qn9xU7eF0oSd7q0q" class="btn-primary btn-primary-outline pricing-card-btn member-link">Get 5-Day Pass</a>
-                    <a href="https://buy.stripe.com/6oU4gz7OLcK68iJfjMd7q0r" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Get 5-Day Pass</a>
+                    <a href="#reserve" class="btn-primary btn-primary-outline pricing-card-btn" onclick="selectPlan('5-Day Pass')">Apply</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1348,8 +1346,7 @@
                     <p class="pricing-card-period member-price">&euro;25/day</p>
                     <p class="pricing-card-period nonmember-price" style="display:none;">&euro;30/day</p>
                     <p class="pricing-card-desc">Two flexible weeks. Best value for regular visitors.</p>
-                    <a href="https://buy.stripe.com/14A8wP7OL25sbuV3B4d7q0s" class="btn-primary btn-primary-outline pricing-card-btn member-link">Get 10-Day Pass</a>
-                    <a href="https://buy.stripe.com/9B614n6KHbG256xgnQd7q0t" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Get 10-Day Pass</a>
+                    <a href="#reserve" class="btn-primary btn-primary-outline pricing-card-btn" onclick="selectPlan('10-Day Pass')">Apply</a>
                 </div>
 
                 <div class="pricing-card featured">
@@ -1359,8 +1356,7 @@
                     <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;400</p>
                     <p class="pricing-card-period">per month</p>
                     <p class="pricing-card-desc">Your dedicated desk. Cancel anytime.</p>
-                    <a href="https://buy.stripe.com/00w28rb0XaBYeH77Rkd7q0u" class="btn-primary pricing-card-btn member-link">Reserve Your Desk</a>
-                    <a href="https://buy.stripe.com/fZu28r4CzcK61Ulb3wd7q0n" class="btn-primary pricing-card-btn nonmember-link" style="display:none;">Reserve Your Desk</a>
+                    <a href="#reserve" class="btn-primary pricing-card-btn" onclick="selectPlan('Monthly')">Apply</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1369,8 +1365,7 @@
                     <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;380</p>
                     <p class="pricing-card-period">per month</p>
                     <p class="pricing-card-desc">Commit for a quarter or more. Save on your monthly rate.</p>
-                    <a href="https://buy.stripe.com/9B64gzb0XdOa1UlfjMd7q0v" class="btn-primary btn-primary-outline pricing-card-btn member-link">Reserve Your Desk</a>
-                    <a href="https://buy.stripe.com/9B64gzb0XfWi7eF6Ngd7q0x" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Reserve Your Desk</a>
+                    <a href="#reserve" class="btn-primary btn-primary-outline pricing-card-btn" onclick="selectPlan('Monthly')">Apply</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1379,13 +1374,12 @@
                     <p class="pricing-card-amount nonmember-price" style="display:none;">&euro;340</p>
                     <p class="pricing-card-period">per month</p>
                     <p class="pricing-card-desc">The best rate. A full year at The Nova House.</p>
-                    <a href="https://buy.stripe.com/14A6oHed9dOa0Qh7Rkd7q0w" class="btn-primary btn-primary-outline pricing-card-btn member-link">Reserve Your Desk</a>
-                    <a href="https://buy.stripe.com/3cI3cv7OL8tQaqR5Jcd7q0y" class="btn-primary btn-primary-outline pricing-card-btn nonmember-link" style="display:none;">Reserve Your Desk</a>
+                    <a href="#reserve" class="btn-primary btn-primary-outline pricing-card-btn" onclick="selectPlan('Monthly')">Apply</a>
                 </div>
 
             </div>
 
-            <p class="pricing-note reveal">All day passes are valid for <strong>1 year</strong> from purchase. Limited to <strong>10 spots</strong>.</p>
+            <p class="pricing-note reveal">All day passes are valid for <strong>1 year</strong> from your first day. Limited to <strong>10 spots</strong>.</p>
         </div>
     </section>
 
@@ -1421,6 +1415,68 @@
                     ></iframe>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ── APPLY ── -->
+    <section class="final-cta" id="reserve">
+        <div class="final-cta-glow"></div>
+        <div class="container">
+            <div class="section-header center reveal">
+                <p class="section-label">Apply</p>
+                <h2 class="section-title">Ready to work at The Nova House?</h2>
+                <p class="section-desc">Join a select group of professionals building the future from Madrid. Fill in the form and we'll get back to you.</p>
+            </div>
+            <form id="novaHouseForm" class="nova-form reveal">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Jane">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Smith">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+34 612 34 56 78">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="name@example.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="plan">What are you interested in? <span class="required">*</span></label>
+                    <select id="plan" name="plan" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Day Pass">Day Pass</option>
+                        <option value="5-Day Pass">5-Day Pass</option>
+                        <option value="10-Day Pass">10-Day Pass</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>When would you like to start? <span class="required">*</span></label>
+                    <div class="form-options">
+                        <label class="form-option"><input type="radio" name="startDate" value="As soon as possible" required><span>As soon as possible</span></label>
+                        <label class="form-option"><input type="radio" name="startDate" value="Within a month"><span>Within a month</span></label>
+                        <label class="form-option"><input type="radio" name="startDate" value="In 1-3 months"><span>In 1–3 months</span></label>
+                        <label class="form-option"><input type="radio" name="startDate" value="Just exploring"><span>Just exploring</span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Any questions or comments?</label>
+                    <textarea id="comments" name="comments" rows="3" placeholder="Type your answer here..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary form-submit">
+                    Apply for a Spot <span class="material-icons-outlined" style="font-size: 20px;">chevron_right</span>
+                </button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+            <p class="final-cta-note reveal" style="margin-top: 24px;">Questions? Email <a href="mailto:elias.casado@novatalent.com" style="color: var(--nova-accent); text-decoration: none;">elias.casado@novatalent.com</a></p>
         </div>
     </section>
 
@@ -1499,58 +1555,6 @@
                 <div id="eventsFormMessage" class="form-message"></div>
             </form>
             <p class="final-cta-note reveal" style="margin-top: 24px;">Prefer email? Write us at <a href="mailto:elias.casado@novatalent.com" style="color: var(--nova-accent); text-decoration: none;">elias.casado@novatalent.com</a></p>
-        </div>
-    </section>
-
-    <!-- ── APPLY ── -->
-    <section class="final-cta" id="reserve">
-        <div class="final-cta-glow"></div>
-        <div class="container">
-            <div class="section-header center reveal">
-                <p class="section-label">Apply</p>
-                <h2 class="section-title">Ready to work at The Nova House?</h2>
-                <p class="section-desc">Join a select group of professionals building the future from Madrid. Fill in the form and we'll get back to you.</p>
-            </div>
-            <form id="novaHouseForm" class="nova-form reveal">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First name <span class="required">*</span></label>
-                        <input type="text" id="firstName" name="firstName" required placeholder="Jane">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last name <span class="required">*</span></label>
-                        <input type="text" id="lastName" name="lastName" required placeholder="Smith">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="phone">Phone number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+34 612 34 56 78">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="name@example.com">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>When would you like to start? <span class="required">*</span></label>
-                    <div class="form-options">
-                        <label class="form-option"><input type="radio" name="startDate" value="As soon as possible" required><span>As soon as possible</span></label>
-                        <label class="form-option"><input type="radio" name="startDate" value="Within a month"><span>Within a month</span></label>
-                        <label class="form-option"><input type="radio" name="startDate" value="In 1-3 months"><span>In 1–3 months</span></label>
-                        <label class="form-option"><input type="radio" name="startDate" value="Just exploring"><span>Just exploring</span></label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="comments">Any questions or comments?</label>
-                    <textarea id="comments" name="comments" rows="3" placeholder="Type your answer here..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary form-submit">
-                    Apply for a Spot <span class="material-icons-outlined" style="font-size: 20px;">chevron_right</span>
-                </button>
-                <div id="formMessage" class="form-message"></div>
-            </form>
-            <p class="final-cta-note reveal" style="margin-top: 24px;">Questions? Email <a href="mailto:elias.casado@novatalent.com" style="color: var(--nova-accent); text-decoration: none;">elias.casado@novatalent.com</a></p>
         </div>
     </section>
 
@@ -1743,6 +1747,7 @@
                 lastName: form.lastName.value,
                 phone: form.phone.value,
                 email: form.email.value,
+                plan: form.plan.value,
                 startDate: form.startDate.value,
                 comments: form.comments.value
             }, document.getElementById('formMessage'), 'Application sent! We will be in touch soon.');
@@ -1766,6 +1771,12 @@
                 details: form.eventDetails.value
             }, document.getElementById('eventsFormMessage'), 'Request sent! We will get back to you shortly.');
         });
+
+        // ── Preselect plan from pricing cards ──
+        function selectPlan(plan) {
+            const select = document.getElementById('plan');
+            if (select) select.value = plan;
+        }
 
         // ── Pricing toggle ──
         function switchPricing(type) {
